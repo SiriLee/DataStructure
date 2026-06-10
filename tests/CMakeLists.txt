@@ -1,0 +1,27 @@
+# 每个测试文件对应一个可执行文件
+
+# 辅助函数：添加测试
+function(add_dsc_test name)
+    add_executable(${name} ${name}.cpp)
+    add_test(NAME ${name} COMMAND ${name})
+endfunction()
+
+add_dsc_test(test_array)
+add_dsc_test(test_vector)
+add_dsc_test(test_list)
+add_dsc_test(test_stack)
+add_dsc_test(test_queue)
+add_dsc_test(test_string)
+add_dsc_test(test_set)
+add_dsc_test(test_disjoint_sets)
+add_dsc_test(test_binary_tree)
+add_dsc_test(test_tree)
+add_dsc_test(test_graph)
+add_dsc_test(test_sort)
+add_dsc_test(test_kmp)
+add_dsc_test(test_huffman)
+add_dsc_test(test_expression)
+add_dsc_test(test_rolling_hash)
+add_dsc_test(test_shortest_path)
+add_dsc_test(test_mst)
+add_dsc_test(test_graph_algo)
