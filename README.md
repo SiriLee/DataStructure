@@ -127,8 +127,14 @@ DataStructure/
 ### 方式二：使用 CMake
 
 ```bash
-cmake -B build
+# 首次配置（MinGW）
+cmake --preset mingw
+
+# 编译
 cmake --build build
+
+# 运行测试
+ctest --test-dir build
 ```
 
 ## 命名规范
