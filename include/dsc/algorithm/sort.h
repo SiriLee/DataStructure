@@ -208,16 +208,6 @@ void MergeSortRecursive(std::vector<T>& arr, int left, int right) {
 
 // -------------------- 基数排序（LSD，仅适用于非负整数） --------------------
 template<typename T>
-T DigitAt(const T& num, int d) {
-    T ten = static_cast<T>(10);
-    T val = num;
-    for (int i = 0; i < d; ++i) {
-        val /= ten;
-    }
-    return val % ten;
-}
-
-template<typename T>
 void RadixSortLSD(std::vector<T>& arr, int max_digits) {
     // 要求所有元素非负
     for (const T& num : arr) {
@@ -225,10 +215,12 @@ void RadixSortLSD(std::vector<T>& arr, int max_digits) {
         assert(num >= 0);
     }
 
+    const T ten = static_cast<T>(10);
+    T power = static_cast<T>(1);
     std::vector<std::list<T>> buckets(10);
     for (int d = 0; d < max_digits; ++d) {
         for (const T& num : arr) {
-            int digit = static_cast<int>(DigitAt(num, d));
+            int digit = static_cast<int>((num / power) % ten);
             buckets[digit].push_back(num);
         }
         int idx = 0;
@@ -238,6 +230,7 @@ void RadixSortLSD(std::vector<T>& arr, int max_digits) {
             }
             bucket.clear();
         }
+        power *= ten;
     }
 }
 
