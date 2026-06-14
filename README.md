@@ -57,9 +57,11 @@ DataStructure/
 │   ├── binary_tree.h           # BinaryTree<T>    — 二叉树
 │   ├── tree.h                  # Tree<T>          — 一般树
 │   ├── graph.h                 # Graph            — 图（邻接表/矩阵，有向/无向）
+│   ├── loser_tree.h            # LoserTree<T>     — 败者树
 │   └── algorithm/
 │       ├── algorithm.h         # 统一算法包含
 │       ├── sort.h              # 排序算法
+│       ├── external_sort.h     # 外部排序
 │       ├── kmp.h               # KMP 字符串匹配
 │       ├── huffman.h           # 哈夫曼编码
 │       ├── expression.h        # 表达式求值
@@ -87,6 +89,7 @@ DataStructure/
 | `Tree<T>` | 一般树，支持多种构造方式 | `dsc::` |
 | `AdjListGraph` | 邻接表图 | `dsc::` |
 | `AdjMatrixGraph` | 邻接矩阵图 | `dsc::` |
+| `LoserTree<T>` | 败者树（最小胜者树），O(k) 建树 O(log k) 重赛 | `dsc::` |
 
 ## 算法概览
 
@@ -102,6 +105,9 @@ DataStructure/
 | 归并排序（迭代） | `MergeSort` | `dsc::algorithm::` |
 | 归并排序（递归） | `MergeSortRecursive` | `dsc::algorithm::` |
 | 基数排序（LSD） | `RadixSortLSD` | `dsc::algorithm::` |
+| 置换-选择排序 | `ReplacementSelection` | `dsc::algorithm::` |
+| k-路归并 | `KWayMerge` | `dsc::algorithm::` |
+| 外部排序 | `ExternalSort` | `dsc::algorithm::` |
 | KMP 字符串匹配 | `KmpSearch` / `KmpSearchFixed` | `dsc::algorithm::` |
 | 哈夫曼编码 | `HuffmanTree` 类 | `dsc::algorithm::` |
 | 表达式求值 | `PostfixEval` / `PrefixEval` / `InfixEval` | `dsc::algorithm::` |
