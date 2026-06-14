@@ -18,6 +18,7 @@
 #include "binary_tree.h"
 #include "tree.h"
 #include "graph.h"
+#include "loser_tree.h"
 
 // 算法
 #include "algorithm/algorithm.h"
