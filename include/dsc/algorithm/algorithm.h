@@ -6,6 +6,7 @@
 // ============================================================
 
 #include "sort.h"
+#include "external_sort.h"
 #include "kmp.h"
 #include "huffman.h"
 #include "expression.h"
