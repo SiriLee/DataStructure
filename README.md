@@ -59,6 +59,7 @@ DataStructure/
 │   ├── tree.h                  # Tree<T>          — 一般树
 │   ├── graph.h                 # Graph            — 图（邻接表/矩阵，有向/无向）
 │   ├── loser_tree.h            # LoserTree<T>     — 败者树
+│   ├── rb_tree.h               # RBTree           — 红黑树
 │   └── algorithm/
 │       ├── algorithm.h         # 统一算法包含
 │       ├── sort.h              # 排序算法
@@ -92,6 +93,7 @@ DataStructure/
 | `AdjListGraph` | 邻接表图 | `dsc::` |
 | `AdjMatrixGraph` | 邻接矩阵图 | `dsc::` |
 | `LoserTree<T>` | 败者树（最小胜者树），O(k) 建树 O(log k) 重赛 | `dsc::` |
+| `RBTree` | 红黑树，自平衡二叉搜索树 | `dsc::` |
 
 ## 算法概览
 

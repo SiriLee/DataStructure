@@ -20,6 +20,7 @@
 #include "tree.h"
 #include "graph.h"
 #include "loser_tree.h"
+#include "rb_tree.h"
 
 // 算法
 #include "algorithm/algorithm.h"
