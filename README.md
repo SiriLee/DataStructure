@@ -93,7 +93,7 @@ DataStructure/
 | `AdjListGraph` | 邻接表图 | `dsc::` |
 | `AdjMatrixGraph` | 邻接矩阵图 | `dsc::` |
 | `LoserTree<T>` | 败者树（最小胜者树），O(k) 建树 O(log k) 重赛 | `dsc::` |
-| `RBTree` | 红黑树，自平衡二叉搜索树 | `dsc::` |
+| `RBTree` | 红黑树，支持插入和查找 | `dsc::` |
 
 ## 算法概览
 

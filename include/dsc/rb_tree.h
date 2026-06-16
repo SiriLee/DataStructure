@@ -5,7 +5,7 @@ namespace dsc {
 
 // ============================================================
 // RBTree — 红黑树
-// 实现：搜索、插入、删除
+// 实现：搜索、插入
 // ============================================================
 
 class RBTree {
@@ -30,7 +30,6 @@ public:
     ~RBTree() { clear(root_); }
 
     void insert(int value);
-    void remove(int value);
     bool search(int value) const;
 
 private:
@@ -41,12 +40,7 @@ private:
     // 插入修正：修复连续红色违规
     void insert_fixup(Node* node);
 
-    // 删除修正：修复黑色高度违规
-    void remove_fixup(Node* node, Node* parent);
-
     // 辅助
-    Node* minimum(Node* node) const;
-    void transplant(Node* u, Node* v);
     void clear(Node* node);
 };
 
@@ -180,153 +174,7 @@ void RBTree::insert_fixup(Node* node) {
     root_->color = BLACK;
 }
 
-// ==================== 删除 ====================
-
-void RBTree::remove(int value) {
-    // 查找待删除节点
-    Node* node = root_;
-    while (node) {
-        if (value < node->data) {
-            node = node->left;
-        } else if (value > node->data) {
-            node = node->right;
-        } else {
-            break;
-        }
-    }
-    if (!node) return; // 未找到
-
-    Node* y = node;           // 实际被移除（或移动）的节点
-    Node* x = nullptr;        // 替换 y 的节点
-    Node* x_parent = nullptr; // x 的父节点
-    Color y_original = y->color;
-
-    if (!node->left) {
-        // 只有右子（或无子）
-        x = node->right;
-        x_parent = node->parent;
-        transplant(node, node->right);
-    } else if (!node->right) {
-        // 只有左子
-        x = node->left;
-        x_parent = node->parent;
-        transplant(node, node->left);
-    } else {
-        // 有两个子节点：用后继替换
-        y = minimum(node->right);
-        y_original = y->color;
-        x = y->right;
-
-        if (y->parent == node) {
-            x_parent = y;
-        } else {
-            transplant(y, y->right);
-            y->right = node->right;
-            y->right->parent = y;
-            x_parent = y->parent;
-        }
-
-        transplant(node, y);
-        y->left = node->left;
-        y->left->parent = y;
-        y->color = node->color;
-    }
-
-    delete node;
-
-    // 若移除的是黑节点，需修正
-    if (y_original == BLACK) {
-        remove_fixup(x, x_parent);
-    }
-}
-
-void RBTree::remove_fixup(Node* node, Node* parent) {
-    // node 可能为空（双重黑色在空节点上）
-    while (node != root_ && (!node || node->color == BLACK)) {
-        if (node == parent->left) {
-            Node* sibling = parent->right;
-
-            // 情况1：兄弟为红
-            if (sibling && sibling->color == RED) {
-                sibling->color = BLACK;
-                parent->color = RED;
-                rotate_left(parent);
-                sibling = parent->right;
-            }
-
-            // 情况2：兄弟两子皆黑
-            if ((!sibling->left || sibling->left->color == BLACK) &&
-                (!sibling->right || sibling->right->color == BLACK)) {
-                if (sibling) sibling->color = RED;
-                node = parent;
-                parent = node->parent;
-            } else {
-                // 情况3：兄弟左子红、右子黑
-                if (!sibling->right || sibling->right->color == BLACK) {
-                    if (sibling->left) sibling->left->color = BLACK;
-                    sibling->color = RED;
-                    rotate_right(sibling);
-                    sibling = parent->right;
-                }
-                // 情况4：兄弟右子红
-                sibling->color = parent->color;
-                parent->color = BLACK;
-                if (sibling->right) sibling->right->color = BLACK;
-                rotate_left(parent);
-                node = root_;
-            }
-        } else {
-            // 对称：node 是右子
-            Node* sibling = parent->left;
-
-            if (sibling && sibling->color == RED) {
-                sibling->color = BLACK;
-                parent->color = RED;
-                rotate_right(parent);
-                sibling = parent->left;
-            }
-
-            if ((!sibling->left || sibling->left->color == BLACK) &&
-                (!sibling->right || sibling->right->color == BLACK)) {
-                if (sibling) sibling->color = RED;
-                node = parent;
-                parent = node->parent;
-            } else {
-                if (!sibling->left || sibling->left->color == BLACK) {
-                    if (sibling->right) sibling->right->color = BLACK;
-                    sibling->color = RED;
-                    rotate_left(sibling);
-                    sibling = parent->left;
-                }
-                sibling->color = parent->color;
-                parent->color = BLACK;
-                if (sibling->left) sibling->left->color = BLACK;
-                rotate_right(parent);
-                node = root_;
-            }
-        }
-    }
-    if (node) node->color = BLACK;
-}
-
-// ==================== 辅助函数 ====================
-
-void RBTree::transplant(Node* u, Node* v) {
-    // 用 v 替换 u
-    if (!u->parent) {
-        root_ = v;
-    } else if (u == u->parent->left) {
-        u->parent->left = v;
-    } else {
-        u->parent->right = v;
-    }
-    if (v) v->parent = u->parent;
-}
-
-RBTree::Node* RBTree::minimum(Node* node) const {
-    while (node && node->left) node = node->left;
-    return node;
-}
+// ==================== 查找 ====================
 
 bool RBTree::search(int value) const {
     Node* curr = root_;
