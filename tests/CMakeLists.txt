@@ -7,6 +7,7 @@ function(add_dsc_test name)
 endfunction()
 
 add_dsc_test(test_array)
+add_dsc_test(test_avl_tree)
 add_dsc_test(test_vector)
 add_dsc_test(test_list)
 add_dsc_test(test_stack)

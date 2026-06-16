@@ -8,6 +8,7 @@
 
 // 数据结构
 #include "array.h"
+#include "avl_tree.h"
 #include "vector.h"
 #include "list.h"
 #include "stack.h"

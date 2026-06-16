@@ -47,6 +47,7 @@ DataStructure/
 ├── include/dsc/
 │   ├── dsc.h                   # 统一包含头文件
 │   ├── array.h                 # Array<T, N>      — 固定大小数组
+│   ├── avl_tree.h              # AVLTree          — AVL树
 │   ├── vector.h                # Vector<T>        — 动态数组
 │   ├── list.h                  # List<T>          — 双向链表
 │   ├── stack.h                 # Stack<T>         — 栈
@@ -78,6 +79,7 @@ DataStructure/
 | 类 | 描述 | 命名空间 |
 |---|---|---|
 | `Array<T, N>` | 固定大小数组，编译期确定大小 | `dsc::` |
+| `AVLTree` | AVL树，自平衡二叉搜索树 | `dsc::` |
 | `Vector<T>` | 动态数组，自动扩容 | `dsc::` |
 | `List<T>` | 双向链表 | `dsc::` |
 | `Stack<T>` | 栈（LIFO） | `dsc::` |
