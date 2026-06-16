@@ -80,20 +80,20 @@ DataStructure/
 | 类 | 描述 | 命名空间 |
 |---|---|---|
 | `Array<T, N>` | 固定大小数组，编译期确定大小 | `dsc::` |
-| `AVLTree` | AVL树，自平衡二叉搜索树 | `dsc::` |
 | `Vector<T>` | 动态数组，自动扩容 | `dsc::` |
 | `List<T>` | 双向链表 | `dsc::` |
 | `Stack<T>` | 栈（LIFO） | `dsc::` |
 | `Queue<T>` | 队列（FIFO），环形缓冲区实现 | `dsc::` |
 | `String` | 字符串类 | `dsc::` |
 | `Set<T>` | 基于二叉搜索树的集合 | `dsc::` |
-| `DisjointSets` | 并查集（Union-Find） | `dsc::` |
+| `AVLTree` | AVL树，自平衡二叉搜索树 | `dsc::` |
 | `BinaryTree<T>` | 二叉树，支持递归/非递归/层序遍历 | `dsc::` |
+| `RBTree` | 红黑树，支持插入和查找 | `dsc::` |
 | `Tree<T>` | 一般树，支持多种构造方式 | `dsc::` |
+| `DisjointSets` | 并查集（Union-Find） | `dsc::` |
 | `AdjListGraph` | 邻接表图 | `dsc::` |
 | `AdjMatrixGraph` | 邻接矩阵图 | `dsc::` |
 | `LoserTree<T>` | 败者树（最小胜者树），O(k) 建树 O(log k) 重赛 | `dsc::` |
-| `RBTree` | 红黑树，支持插入和查找 | `dsc::` |
 
 ## 算法概览
 
