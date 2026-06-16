@@ -47,19 +47,19 @@ DataStructure/
 ├── include/dsc/
 │   ├── dsc.h                   # 统一包含头文件
 │   ├── array.h                 # Array<T, N>      — 固定大小数组
-│   ├── avl_tree.h              # AVLTree          — AVL树
 │   ├── vector.h                # Vector<T>        — 动态数组
 │   ├── list.h                  # List<T>          — 双向链表
 │   ├── stack.h                 # Stack<T>         — 栈
 │   ├── queue.h                 # Queue<T>         — 队列
 │   ├── string.h                # String           — 字符串
 │   ├── set.h                   # Set<T>           — 二叉搜索树集合
-│   ├── disjoint_sets.h         # DisjointSets     — 并查集
+│   ├── avl_tree.h              # AVLTree          — AVL树
 │   ├── binary_tree.h           # BinaryTree<T>    — 二叉树
+│   ├── rb_tree.h               # RBTree           — 红黑树
 │   ├── tree.h                  # Tree<T>          — 一般树
+│   ├── disjoint_sets.h         # DisjointSets     — 并查集
 │   ├── graph.h                 # Graph            — 图（邻接表/矩阵，有向/无向）
 │   ├── loser_tree.h            # LoserTree<T>     — 败者树
-│   ├── rb_tree.h               # RBTree           — 红黑树
 │   └── algorithm/
 │       ├── algorithm.h         # 统一算法包含
 │       ├── sort.h              # 排序算法
