@@ -70,7 +70,8 @@ DataStructure/
 │       ├── rolling_hash.h      # 滚动哈希
 │       ├── shortest_path.h     # 最短路径
 │       ├── mst.h               # 最小生成树
-│       └── graph_algo.h        # 拓扑排序、关键路径
+│       ├── graph_algo.h        # 拓扑排序、关键路径
+│       └── euler.h             # 欧拉回路/路径
 ├── tests/                      # 测试文件
 └── examples/                   # 使用示例
 ```
@@ -124,6 +125,7 @@ DataStructure/
 | Prim 最小生成树 | `Prim` | `dsc::algorithm::` |
 | 拓扑排序 | `TopologicalSort` | `dsc::algorithm::` |
 | 关键路径 | `CriticalPath` | `dsc::algorithm::` |
+| 欧拉回路/路径 | `Eulerian` 类 | `dsc::algorithm::` |
 
 ## 使用方式
 

@@ -14,5 +14,6 @@
 #include "shortest_path.h"
 #include "mst.h"
 #include "graph_algo.h"
+#include "euler.h"
 
 #endif // DSC_ALGORITHM_H
