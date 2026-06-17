@@ -57,7 +57,7 @@ DataStructure/
 │   ├── binary_tree.h           # BinaryTree<T>    — 二叉树
 │   ├── rb_tree.h               # RBTree           — 红黑树
 │   ├── tree.h                  # Tree<T>          — 一般树
-│   ├── disjoint_sets.h         # DisjointSets     — 并查集
+│   ├── disjoint_sets.h         # CompressDS / RankDS — 并查集（路径压缩 / 按秩合并）
 │   ├── graph.h                 # Graph            — 图（邻接表/矩阵，有向/无向）
 │   ├── loser_tree.h            # LoserTree<T>     — 败者树
 │   └── algorithm/
@@ -90,7 +90,8 @@ DataStructure/
 | `BinaryTree<T>` | 二叉树，支持递归/非递归/层序遍历 | `dsc::` |
 | `RBTree` | 红黑树，支持插入和查找 | `dsc::` |
 | `Tree<T>` | 一般树，支持多种构造方式 | `dsc::` |
-| `DisjointSets` | 并查集（Union-Find） | `dsc::` |
+| `CompressDS` | 并查集（路径压缩） | `dsc::` |
+| `RankDS` | 并查集（按秩合并） | `dsc::` |
 | `AdjListGraph` | 邻接表图 | `dsc::` |
 | `AdjMatrixGraph` | 邻接矩阵图 | `dsc::` |
 | `LoserTree<T>` | 败者树（最小胜者树），O(k) 建树 O(log k) 重赛 | `dsc::` |

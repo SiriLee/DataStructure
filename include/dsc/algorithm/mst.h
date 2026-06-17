@@ -26,7 +26,7 @@ inline std::vector<Edge> Kruskal(std::vector<Edge> edges, int V) {
     // 按权重升序排序
     std::sort(edges.begin(), edges.end());
 
-    dsc::DisjointSets ds(V);
+    dsc::RankDS ds(V);
     std::vector<Edge> mst;
 
     for (const auto& edge : edges) {

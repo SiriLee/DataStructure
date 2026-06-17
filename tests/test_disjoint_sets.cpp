@@ -2,10 +2,10 @@
 #include <iostream>
 #include <cassert>
 
-int main() {
-    dsc::DisjointSets ds(5);
+void test_compress_ds() {
+    dsc::CompressDS ds(5);
 
-    // 初始各自独立
+    // Initially all disjoint
     assert(ds.find(0) != ds.find(1));
 
     ds.union_sets(0, 1);
@@ -18,10 +18,46 @@ int main() {
     assert(ds.find(3) == ds.find(4));
     assert(ds.find(0) != ds.find(3));
 
-    // 合并两个集合
+    // Merge two sets
     ds.union_sets(2, 3);
     assert(ds.find(0) == ds.find(4));
 
-    std::cout << "test_disjoint_sets: all tests passed!" << std::endl;
+    // Self-union should be safe
+    ds.union_sets(0, 0);
+    assert(ds.find(0) == ds.find(1));
+
+    std::cout << "test_compress_ds: all tests passed!" << std::endl;
+}
+
+void test_rank_ds() {
+    dsc::RankDS ds(5);
+
+    // Initially all disjoint
+    assert(ds.find(0) != ds.find(1));
+
+    ds.union_sets(0, 1);
+    assert(ds.find(0) == ds.find(1));
+
+    ds.union_sets(1, 2);
+    assert(ds.find(0) == ds.find(2));
+
+    ds.union_sets(3, 4);
+    assert(ds.find(3) == ds.find(4));
+    assert(ds.find(0) != ds.find(3));
+
+    // Merge two sets
+    ds.union_sets(2, 3);
+    assert(ds.find(0) == ds.find(4));
+
+    // Self-union should be safe
+    ds.union_sets(0, 0);
+    assert(ds.find(0) == ds.find(1));
+
+    std::cout << "test_rank_ds: all tests passed!" << std::endl;
+}
+
+int main() {
+    test_compress_ds();
+    test_rank_ds();
     return 0;
 }
