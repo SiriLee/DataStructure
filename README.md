@@ -57,6 +57,7 @@ DataStructure/
 │   ├── binary_tree.h           # BinaryTree<T>    — 二叉树
 │   ├── rb_tree.h               # RBTree           — 红黑树
 │   ├── tree.h                  # Tree<T>          — 一般树
+│   ├── trie.h                  # Trie             — 字典树（前缀树）
 │   ├── disjoint_sets.h         # CompressDS / RankDS — 并查集（路径压缩 / 按秩合并）
 │   ├── graph.h                 # Graph            — 图（邻接表/矩阵，有向/无向）
 │   ├── loser_tree.h            # LoserTree<T>     — 败者树
@@ -91,6 +92,7 @@ DataStructure/
 | `BinaryTree<T>` | 二叉树，支持递归/非递归/层序遍历 | `dsc::` |
 | `RBTree` | 红黑树，支持插入和查找 | `dsc::` |
 | `Tree<T>` | 一般树，支持多种构造方式 | `dsc::` |
+| `Trie` | 字典树（前缀树），支持小写字母 a-z | `dsc::` |
 | `CompressDS` | 并查集（路径压缩） | `dsc::` |
 | `RankDS` | 并查集（按秩合并） | `dsc::` |
 | `AdjListGraph` | 邻接表图 | `dsc::` |

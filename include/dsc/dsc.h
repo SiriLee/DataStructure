@@ -18,6 +18,7 @@
 #include "disjoint_sets.h"
 #include "binary_tree.h"
 #include "tree.h"
+#include "trie.h"
 #include "graph.h"
 #include "loser_tree.h"
 #include "rb_tree.h"
