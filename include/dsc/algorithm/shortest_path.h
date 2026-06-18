@@ -4,6 +4,8 @@
 #include <vector>
 #include <limits>
 #include <algorithm>
+#include <queue>
+#include <utility>
 
 namespace dsc {
 namespace algorithm {
@@ -16,12 +18,43 @@ namespace algorithm {
 
 const int INF = std::numeric_limits<int>::max() / 2;
 
-// -------------------- Dijkstra 单源最短路径 --------------------
+// -------------------- Dijkstra 单源最短路径（优先队列优化）--------------------
 // 适用于非负权图
 // graph: 邻接矩阵 graph[u][v] = 权重，graph[u][v] = INF 表示无边
 // start: 源点
 // 返回 dist 数组，dist[i] = start 到 i 的最短距离
+// 时间复杂度 O(E log V)，使用惰性删除避免 decrease_key
 inline std::vector<int> Dijkstra(
+    const std::vector<std::vector<int>>& graph, int start) {
+
+    int V = static_cast<int>(graph.size());
+    std::vector<int> dist(V, INF);
+    dist[start] = 0;
+
+    using Entry = std::pair<int, int>; // (distance, vertex)
+    std::priority_queue<Entry, std::vector<Entry>, std::greater<Entry>> pq;
+    pq.push({0, start});
+
+    while (!pq.empty()) {
+        auto top = pq.top(); pq.pop();
+        int d = top.first;
+        int u = top.second;
+
+        if (d > dist[u]) continue; // 惰性删除：跳过过期条目
+
+        for (int v = 0; v < V; ++v) {
+            if (graph[u][v] != INF && dist[u] + graph[u][v] < dist[v]) {
+                dist[v] = dist[u] + graph[u][v];
+                pq.push({dist[v], v});
+            }
+        }
+    }
+    return dist;
+}
+
+// -------------------- Dijkstra 单源最短路径（无堆，O(V²)）--------------------
+// 适用于稠密图
+inline std::vector<int> DijkstraNaive(
     const std::vector<std::vector<int>>& graph, int start) {
 
     int V = static_cast<int>(graph.size());

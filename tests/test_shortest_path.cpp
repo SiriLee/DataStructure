@@ -29,6 +29,10 @@ int main() {
         // 0->1 = 4, 0->2 = 12, 0->3 = 19, 0->4 = 26 (via 2->3->4), 0->5 = 16
         assert(dist[0] == 0);
         assert(dist[1] == 4);
+
+        // DijkstraNaive should produce the same result
+        auto dist_naive = DijkstraNaive(graph, 0);
+        assert(dist_naive == dist);
     }
 
     // Floyd

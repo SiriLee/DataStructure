@@ -40,6 +40,10 @@ int main() {
 
         int total = Prim(graph);
         assert(total == 16);  // 2+3+5+6 = 16
+
+        // PrimNaive should produce the same result
+        int total_naive = PrimNaive(graph);
+        assert(total_naive == total);
     }
 
     std::cout << "test_mst: all tests passed!" << std::endl;

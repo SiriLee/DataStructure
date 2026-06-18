@@ -4,6 +4,8 @@
 #include <vector>
 #include <algorithm>
 #include <limits>
+#include <queue>
+#include <utility>
 #include "../disjoint_sets.h"
 
 namespace dsc {
@@ -43,10 +45,43 @@ inline std::vector<Edge> Kruskal(std::vector<Edge> edges, int V) {
     return mst;
 }
 
-// -------------------- Prim 算法 --------------------
+// -------------------- Prim 算法（优先队列优化）--------------------
 // graph: 邻接矩阵 graph[u][v] = 权重，graph[u][v] = INF_MST 表示无边
 // 返回 MST 的总权重
+// 时间复杂度 O(E log V)，使用惰性删除避免 decrease_key
 inline int Prim(const std::vector<std::vector<int>>& graph) {
+    int V = static_cast<int>(graph.size());
+    if (V == 0) return 0;
+
+    std::vector<bool> in_mst(V, false);
+    using Entry = std::pair<int, int>; // (weight, vertex)
+    std::priority_queue<Entry, std::vector<Entry>, std::greater<Entry>> pq;
+
+    pq.push({0, 0}); // 从顶点 0 开始
+    int total_weight = 0;
+
+    while (!pq.empty()) {
+        auto top = pq.top(); pq.pop();
+        int w = top.first;
+        int u = top.second;
+
+        if (in_mst[u]) continue; // 惰性删除：跳过已在 MST 中的条目
+
+        in_mst[u] = true;
+        total_weight += w;
+
+        for (int v = 0; v < V; ++v) {
+            if (!in_mst[v] && graph[u][v] != INF_MST) {
+                pq.push({graph[u][v], v});
+            }
+        }
+    }
+    return total_weight;
+}
+
+// -------------------- Prim 算法（无堆，O(V²)）--------------------
+// 适用于稠密图
+inline int PrimNaive(const std::vector<std::vector<int>>& graph) {
     int V = static_cast<int>(graph.size());
     if (V == 0) return 0;
 
