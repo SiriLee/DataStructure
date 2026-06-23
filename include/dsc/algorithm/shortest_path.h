@@ -22,67 +22,33 @@ const int INF = std::numeric_limits<int>::max() / 2;
 // 适用于非负权图
 // graph: 邻接矩阵 graph[u][v] = 权重，graph[u][v] = INF 表示无边
 // start: 源点
-// 返回 dist 数组，dist[i] = start 到 i 的最短距离
+// 返回 (distances, previous vertices)
 // 时间复杂度 O(E log V)，使用惰性删除避免 decrease_key
-inline std::vector<int> Dijkstra(
-    const std::vector<std::vector<int>>& graph, int start) {
+inline std::pair<std::vector<int>, std::vector<int>>
+Dijkstra (const std::vector<std::vector<int>>& graph, int start) {
+    int n = static_cast<int>(graph.size());
 
-    int V = static_cast<int>(graph.size());
-    std::vector<int> dist(V, INF);
-    dist[start] = 0;
-
+    std::vector<int> dist(n, INF); dist[start] = 0;
+    std::vector<int> prev(n, -1);
     using Entry = std::pair<int, int>; // (distance, vertex)
     std::priority_queue<Entry, std::vector<Entry>, std::greater<Entry>> pq;
-    pq.push({0, start});
 
+    pq.push({0, start});
     while (!pq.empty()) {
         auto top = pq.top(); pq.pop();
         int d = top.first;
         int u = top.second;
-
         if (d > dist[u]) continue; // 惰性删除：跳过过期条目
-
-        for (int v = 0; v < V; ++v) {
-            if (graph[u][v] != INF && dist[u] + graph[u][v] < dist[v]) {
-                dist[v] = dist[u] + graph[u][v];
+        for (int v = 0; v < n; ++v) {
+            int weight = graph[u][v];
+            if (weight != INF && dist[u] + weight < dist[v]) {
+                dist[v] = dist[u] + weight;
+                prev[v] = u;
                 pq.push({dist[v], v});
             }
         }
     }
-    return dist;
-}
-
-// -------------------- Dijkstra 单源最短路径（无堆，O(V²)）--------------------
-// 适用于稠密图
-inline std::vector<int> DijkstraNaive(
-    const std::vector<std::vector<int>>& graph, int start) {
-
-    int V = static_cast<int>(graph.size());
-    std::vector<int> dist(V, INF);
-    std::vector<bool> visited(V, false);
-    dist[start] = 0;
-
-    for (int i = 0; i < V; ++i) {
-        // 选取未访问顶点中 dist 最小的
-        int u = -1;
-        int min_dist = INF;
-        for (int j = 0; j < V; ++j) {
-            if (!visited[j] && dist[j] < min_dist) {
-                min_dist = dist[j];
-                u = j;
-            }
-        }
-        if (u == -1) break;
-        visited[u] = true;
-
-        // 松弛
-        for (int v = 0; v < V; ++v) {
-            if (!visited[v] && graph[u][v] != 0 && dist[u] + graph[u][v] < dist[v]) {
-                dist[v] = dist[u] + graph[u][v];
-            }
-        }
-    }
-    return dist;
+    return {dist, prev};
 }
 
 // -------------------- Floyd 全源最短路径 --------------------
