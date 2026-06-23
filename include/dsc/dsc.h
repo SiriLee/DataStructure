@@ -20,6 +20,7 @@
 #include "tree.h"
 #include "trie.h"
 #include "graph.h"
+#include "btree.h"
 #include "heap.h"
 #include "loser_tree.h"
 #include "rb_tree.h"
