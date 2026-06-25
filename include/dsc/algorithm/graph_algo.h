@@ -68,20 +68,17 @@ inline std::vector<int> TopologicalSort(
 
 // -------------------- 关键路径（AOE 网） --------------------
 // graph: 邻接矩阵 graph[u][v] = 活动持续时间，0 表示无边
-// 返回整个工程的最早完成时间（关键路径长度）
-// 同时返回每个顶点的最早开始时间 ve 和最迟开始时间 vl
-inline int CriticalPath(
-    const std::vector<std::vector<int>>& graph,
-    std::vector<int>& ve,   // 输出：最早开始时间
-    std::vector<int>& vl) { // 输出：最迟开始时间
+// 返回所有关键活动 (from, to)，无环时返回空序列
+inline std::vector<std::pair<int, int>> CriticalPath(
+    const std::vector<std::vector<int>>& graph) {
 
     int V = static_cast<int>(graph.size());
-    ve.assign(V, 0);
-    vl.assign(V, INF_CP);
+    std::vector<int> ve(V, 0);
+    std::vector<int> vl(V, INF_CP);
 
     // 先做拓扑排序
     auto topo = TopologicalSort(graph);
-    if (topo.empty()) return -1;  // 存在环
+    if (topo.empty()) return {};  // 存在环
 
     // 正推：计算 ve（最早开始时间）
     for (int u : topo) {
@@ -109,7 +106,16 @@ inline int CriticalPath(
         }
     }
 
-    return max_ve;
+    // 收集所有关键活动：ve[u] + weight == vl[v]
+    std::vector<std::pair<int, int>> critical_edges;
+    for (int u = 0; u < V; ++u) {
+        for (int v = 0; v < V; ++v) {
+            if (graph[u][v] != 0 && u != v && ve[u] + graph[u][v] == vl[v]) {
+                critical_edges.emplace_back(u, v);
+            }
+        }
+    }
+    return critical_edges;
 }
 
 } // namespace algorithm

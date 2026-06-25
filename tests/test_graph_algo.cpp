@@ -44,9 +44,9 @@ int main() {
             {0, 0, 0, 0, 0, 0, 0, 0, 4},
             {0, 0, 0, 0, 0, 0, 0, 0, 0},
         };
-        std::vector<int> ve, vl;
-        int cp = CriticalPath(graph, ve, vl);
-        assert(cp > 0);  // 关键路径长度为正
+        auto critical = CriticalPath(graph);
+        assert(!critical.empty());          // 有关键路径
+        assert(critical.size() == 6);       // 6 条关键活动：0→1, 1→4, 4→6, 4→7, 6→8, 7→8
     }
 
     std::cout << "test_graph_algo: all tests passed!" << std::endl;
