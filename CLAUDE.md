@@ -5,8 +5,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Build & Test
 
 ```bash
-# Configure (MinGW — the only preset)
-cmake --preset mingw
+# Configure (use the preset matching your platform)
+cmake --preset linux   # or: mingw
 
 # Build all test targets
 cmake --build build

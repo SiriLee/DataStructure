@@ -142,8 +142,9 @@ DataStructure/
 ### 方式二：使用 CMake
 
 ```bash
-# 首次配置（MinGW）
-cmake --preset mingw
+# 配置（Linux / MinGW）
+cmake --preset linux    # Linux
+cmake --preset mingw    # Windows MinGW
 
 # 编译
 cmake --build build

@@ -10,6 +10,16 @@
       "cacheVariables": {
         "CMAKE_CXX_COMPILER": "g++"
       }
+    },
+    {
+      "name": "linux",
+      "displayName": "Linux (g++)",
+      "description": "使用 Unix Makefiles，输出到 build/",
+      "generator": "Unix Makefiles",
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {
+        "CMAKE_CXX_COMPILER": "g++"
+      }
     }
   ]
 }
